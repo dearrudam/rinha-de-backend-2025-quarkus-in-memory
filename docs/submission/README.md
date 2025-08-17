@@ -10,14 +10,14 @@
 
 <!-- ci -->
 
-  <a href="https://github.com/dearrudam/rinha-de-backend-2025-quarkus-with-jedis/actions/workflows/ci.yml">
-    <img src="https://github.com/dearrudam/rinha-de-backend-2025-quarkus-with-jedis/actions/workflows/ci.yml/badge.svg" alt="ci" />
+  <a href="https://github.com/dearrudam/rinha-de-backend-2025-quarkus-in-memory/actions/workflows/ci.yml">
+    <img src="https://github.com/dearrudam/rinha-de-backend-2025-quarkus-in-memory/actions/workflows/ci.yml/badge.svg" alt="ci" />
   </a>
 
 <!-- cd -->
 
-  <a href="https://github.com/dearrudam/rinha-de-backend-2025-quarkus-with-jedis/actions/workflows/cd.yml">
-    <img src="https://github.com/dearrudam/rinha-de-backend-2025-quarkus-with-jedis/actions/workflows/cd.yml/badge.svg" alt="docker builds" />
+  <a href="https://github.com/dearrudam/rinha-de-backend-2025-quarkus-in-memory/actions/workflows/cd.yml">
+    <img src="https://github.com/dearrudam/rinha-de-backend-2025-quarkus-in-memory/actions/workflows/cd.yml/badge.svg" alt="docker builds" />
   </a>
 
 </div>
@@ -27,7 +27,7 @@
 
 - **Language:** Java
 - **Framework:** Quarkus
-- **Database/Queue:** Em Memoria
+- **Database/Queue:** Em memória
 - **Load Balancer:** Nginx
 
 ### Source Code Repository

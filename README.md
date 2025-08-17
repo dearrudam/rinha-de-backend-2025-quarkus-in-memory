@@ -2,7 +2,7 @@
     <img src="https://quarkus.io/assets/images/brand/quarkus_logo_vertical_450px_default.png" alt="Logo" width="400"/>
 </p>
 
-<h1 align="center">Rinha de Backend 2025 - Maximillian Arruda</h1>
+<h1 align="center">Rinha de Backend 2025 - Submissão 2 - Maximillian Arruda</h1>
 
 
 <div align="center">
@@ -11,14 +11,14 @@
 
 <!-- ci -->
 
-  <a href="https://github.com/dearrudam/rinha-de-backend-2025-quarkus-with-jedis/actions/workflows/ci.yml">
-    <img src="https://github.com/dearrudam/rinha-de-backend-2025-quarkus-with-jedis/actions/workflows/ci.yml/badge.svg" alt="ci" />
+  <a href="https://github.com/dearrudam/rinha-de-backend-2025-quarkus-in-memory/actions/workflows/ci.yml">
+    <img src="https://github.com/dearrudam/rinha-de-backend-2025-quarkus-in-memory/actions/workflows/ci.yml/badge.svg" alt="ci" />
   </a>
 
 <!-- cd -->
 
-  <a href="https://github.com/dearrudam/rinha-de-backend-2025-quarkus-with-jedis/actions/workflows/cd.yml">
-    <img src="https://github.com/dearrudam/rinha-de-backend-2025-quarkus-with-jedis/actions/workflows/cd.yml/badge.svg" alt="docker builds" />
+  <a href="https://github.com/dearrudam/rinha-de-backend-2025-quarkus-in-memory/actions/workflows/cd.yml">
+    <img src="https://github.com/dearrudam/rinha-de-backend-2025-quarkus-in-memory/actions/workflows/cd.yml/badge.svg" alt="docker builds" />
   </a>
 
 </div>
@@ -42,7 +42,7 @@ Como o intuito desse desafio foi de aprender e praticar o uso do Quarkus, essa i
 
 - **Language:** Java
 - **Framework:** Quarkus
-- **Database/Queue:** Redis
+- **Database/Queue:** Em memória
 - **Load Balancer:** Nginx
 
 ### Diagrama de Arquitetura

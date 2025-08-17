@@ -10,66 +10,58 @@ services:
     ports:
       - "9999:9999"
     networks:
-      - dearrudam-java-1-net
+      - dearrudam-java-2-net
     deploy:
       resources:
         limits:
-          cpus: "0.15"
-          memory: "20MB"
+          cpus: "0.20"
+          memory: "30MB"
 
   #--- BACKEND 1 ---
   backend1: &backend
-    image: ghcr.io/dearrudam/rinha-de-backend-2025-quarkus-with-jedis:1.0.2
+    image: ghcr.io/dearrudam/rinha-de-backend-2025-quarkus-in-memory:1.0.0
     environment:
-      - JEDIS_URL=redis://redis:6379
-      - DEFAULT_PAYMENT_URL=http://payment-processor-default:8080/payments
-      - FALLBACK_PAYMENT_URL=http://payment-processor-fallback:8080/payments
+      - QUARKUS_HTTP_PORT=8080
+      - DEFAULT_PAYMENT_PROCESSOR_URL=http://payment-processor-default:8080
+      - FALLBACK_PAYMENT_PROCESSOR_URL=http://payment-processor-fallback:8080
+      - INTERNAL_PAYMENTS_MANAGEMENT_URL=http://backend2:8080
+      - WORKER_QUEUE_BUFFER=999999999
       - RETRIES_BEFORE_FALLBACK=10000
-      - INSTANCE_NAME=backend-01
-      - WORKERS_SIZE=13
+      - PAYMENTS_PARALLEL_STREAM_THRESHOLD=1000000
+      - QUARKUS_OTEL_ENABLED=false
+      - QUARKUS_OTEL_METRICS_ENABLED=false
+      - QUARKUS_OTEL_LOGS_ENABLED=false
+      - QUARKUS_OTEL_SDK_DISABLED=true
+      - WORKER_SIZE=12
     networks:
-      - dearrudam-java-1-net
+      - dearrudam-java-2-net
       - payment-processor
-    depends_on:
-      - redis
     deploy:
       resources:
         limits:
-          cpus: "0.55"
-          memory: "120MB"
+          cpus: "0.65"
+          memory: "160MB"
 
   #--- BACKEND 2 ---
   backend2:
     <<: *backend
     environment:
-      - JEDIS_URL=redis://redis:6379
-      - DEFAULT_PAYMENT_URL=http://payment-processor-default:8080/payments
-      - FALLBACK_PAYMENT_URL=http://payment-processor-fallback:8080/payments
+      - QUARKUS_HTTP_PORT=8080
+      - DEFAULT_PAYMENT_PROCESSOR_URL=http://payment-processor-default:8080
+      - FALLBACK_PAYMENT_PROCESSOR_URL=http://payment-processor-fallback:8080
+      - INTERNAL_PAYMENTS_MANAGEMENT_URL=http://backend1:8080
+      - WORKER_QUEUE_BUFFER=999999999
       - RETRIES_BEFORE_FALLBACK=10000
-      - INSTANCE_NAME=backend-02
-      - WORKERS_SIZE=13
+      - PAYMENTS_PARALLEL_STREAM_THRESHOLD=1000000
+      - QUARKUS_OTEL_ENABLED=false
+      - QUARKUS_OTEL_METRICS_ENABLED=false
+      - QUARKUS_OTEL_LOGS_ENABLED=false
+      - QUARKUS_OTEL_SDK_DISABLED=true
+      - WORKER_SIZE=12
 
-  #--- QUEUE AND STORAGE ---
-  redis:
-    image: redis:7.2-alpine
-    command: redis-server --save "" --appendonly no --maxclients 20000
-    ports:
-      - "6376:6379"
-    networks:
-      - dearrudam-java-1-net
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-    deploy:
-      resources:
-        limits:
-          cpus: "0.25"
-          memory: "90MB"
 #--- NETWORKS ---
 networks:
-  dearrudam-java-1-net:
+  dearrudam-java-2-net:
     driver: bridge
   payment-processor:
     external: true
