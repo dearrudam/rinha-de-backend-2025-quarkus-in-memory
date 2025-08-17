@@ -71,9 +71,8 @@ jobs:
           max_container_attempts=10
           container_attempt=1
           while [ $container_attempt -le $max_container_attempts ]; do
-            up_containers=$(docker compose ps --format json | jq -r '.[] | select(.State=="running") | .Name')
             total_containers=$(docker compose ps --format json | jq length)
-            running_containers=$(echo "$up_containers" | wc -l)
+            running_containers=$(docker compose ps --format json | jq '[.[] | select(.State=="running")] | length')
             if [ "$running_containers" -eq "$total_containers" ]; then
               echo "Todos os containers estão up!"
               break
@@ -169,4 +168,3 @@ jobs:
           git add perf.md
           git commit -m "docs(performance): Update performance test results for ${{ github.sha }}"
           git push
-
