@@ -10,7 +10,7 @@ services:
     ports:
       - "9999:9999"
     networks:
-      - dearrudam-java-1-net
+      - dearrudam-java-2-net
     deploy:
       resources:
         limits:
@@ -29,7 +29,7 @@ services:
       - INSTANCE_NAME=backend-01
       - WORKERS_SIZE=13
     networks:
-      - dearrudam-java-1-net
+      - dearrudam-java-2-net
       - payment-processor
     depends_on:
       - redis
@@ -57,7 +57,7 @@ services:
     ports:
       - "6376:6379"
     networks:
-      - dearrudam-java-1-net
+      - dearrudam-java-2-net
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
@@ -70,7 +70,7 @@ services:
           memory: "90MB"
 #--- NETWORKS ---
 networks:
-  dearrudam-java-1-net:
+  dearrudam-java-2-net:
     driver: bridge
   payment-processor:
     external: true

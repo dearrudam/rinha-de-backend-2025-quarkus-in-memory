@@ -9,12 +9,12 @@
     "https://www.linkedin.com/in/maxarruda/",
     "https://www.youtube.com/@MaximillianArruda"
   ],
-  "source-code-repo": "https://github.com/dearrudam/rinha-de-backend-2025-quarkus-with-jedis",
+  "source-code-repo": "https://github.com/dearrudam/rinha-de-backend-2025-quarkus-in-memory.git",
   "langs": [
     "java"
   ],
   "storages": [
-    "redis"
+    "in memory"
   ],
   "messaging": [],
   "load-balancers": [

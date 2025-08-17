@@ -19,8 +19,8 @@ jobs:
     runs-on: ubuntu-24.04
 
     env:
-      PARTICIPANTE: ${{ github.repository_owner }}_java_01
-      RESULTS_FILE_PATH: actual-rinha/participantes/${{ github.repository_owner }}_java_01/partial-results.json
+      PARTICIPANTE: ${{ github.repository_owner }}_java_02
+      RESULTS_FILE_PATH: actual-rinha/participantes/${{ github.repository_owner }}_java_02/partial-results.json
 
     permissions:
       contents: write
