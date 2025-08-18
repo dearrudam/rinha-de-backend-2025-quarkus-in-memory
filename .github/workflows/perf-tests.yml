@@ -67,25 +67,6 @@ jobs:
       - name: 🔍 Check running containers
         run: |
           docker ps
-          echo "Verificando se todos os containers estão up..."
-          max_container_attempts=10
-          container_attempt=1
-          while [ $container_attempt -le $max_container_attempts ]; do
-            total_containers=$(docker compose ps --format json | jq length)
-            running_containers=$(docker compose ps --format json | jq '[.[] | select(.State=="running")] | length')
-            if [ "$running_containers" -eq "$total_containers" ]; then
-              echo "Todos os containers estão up!"
-              break
-            fi
-            echo "Tentativa $container_attempt/$max_container_attempts: Nem todos os containers estão up. ($running_containers/$total_containers)"
-            container_attempt=$((container_attempt+1))
-            sleep 2
-          done
-          if [ $container_attempt -gt $max_container_attempts ]; then
-            echo "Nem todos os containers estão up após $max_container_attempts tentativas."
-            docker compose ps
-            exit 1
-          fi
           echo "Aguardando o backend responder 200 em /payments-summary..."
           max_attempts=10
           attempt=1
