@@ -67,24 +67,8 @@ jobs:
       - name: 🔍 Check running containers
         run: |
           docker ps
-          echo "Aguardando o backend responder 200 em /payments-summary..."
-          max_attempts=10
-          attempt=1
-          while [ $attempt -le $max_attempts ]; do
-            status=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:9999/payments-summary)
-            if [ "$status" -eq 200 ]; then
-              echo "Backend está pronto!"
-              break
-            fi
-            echo "Tentativa $attempt/$max_attempts falhou (status: $status), aguardando..."
-            attempt=$((attempt+1))
-            sleep 2
-          done
-          if [ $attempt -gt $max_attempts ]; then
-            echo "Backend não respondeu 200 após $max_attempts tentativas."
-            exit 1
-          fi
-
+          sleep 2
+    
       - name: 📈 Run Performance Tests
         run: |
           mkdir -p actual-rinha/participantes/${{ env.PARTICIPANTE }}
